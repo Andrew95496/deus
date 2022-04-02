@@ -1,4 +1,6 @@
-def command(speech):
-    sentance = speech.split()
-    print(sentance[0])
-    return sentance[0]
+class Command:
+
+    def identification(speech):
+        sentance = speech.split()
+        print(sentance[0])
+        return sentance[0]

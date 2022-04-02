@@ -1,16 +1,18 @@
 import sys
-from modules.commandtype import command
-from modules.createfiles import createfiles
+from modules.commandtype import Command
+from modules.files import Files
 import speech_recognition as sr
 
 # TODO parse through the command
+# TODO add a save command
+
 
 _TIMEOUT = 7
 
 
 if len(sys.argv) <= 1:
     print('''Welcome to Titan v0.0.1
-    
+
 \tfor help type: 'titan help'
     ''')
 
@@ -30,6 +32,7 @@ elif sys.argv[1] == 'listen':
 
     print(f'What was heard: {recognized_speech}')
 
-    if command(recognized_speech) == 'create':
-        createfiles(recognized_speech)
+# titan is looking for the create command
+    if Command.identification(recognized_speech) == 'create':
+        Files.generate(recognized_speech)
 
