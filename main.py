@@ -1,23 +1,21 @@
 import sys
+import speech_recognition as sr
+
+
 from modules.commandtype import Command
 from modules.files import Files
-import speech_recognition as sr
+from config import __version__, _TIMEOUT
 
 # TODO parse through the command
 # TODO add a save command
 
 
-_TIMEOUT = 7
-
 
 if len(sys.argv) <= 1:
-    print('''Welcome to Titan v0.0.1
+    print(f'''\nWelcome to DEUS "{__version__}"
 
-\tfor help type: 'titan help'
+\tfor help type: 'deus help'
     ''')
-
-
-# print(sys.argv[1])
 
 
 elif sys.argv[1] == 'listen':
@@ -32,7 +30,7 @@ elif sys.argv[1] == 'listen':
 
     print(f'What was heard: {recognized_speech}')
 
-# titan is looking for the create command
+# titan is listening for the 'CREATE' command
     if Command.identification(recognized_speech) == 'create':
         Files.generate(recognized_speech)
 
