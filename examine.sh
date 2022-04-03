@@ -4,13 +4,13 @@ args=("$@")
 
 
 if [[ "${args[0]}" == "clean" ]]; then
-    rm /Users/drewskikatana/titan/test/*
+    rm /Users/drewskikatana/deus/test/*
     echo "folder cleaned"
 fi
 
 if [[ "${args[0]}" == "count" ]]; then
 TOTAL=0
-FILES="/Users/drewskikatana/titan/test/*"
+FILES="/Users/drewskikatana/deus/test/*"
 for f in $FILES
 do
     TOTAL=$(( TOTAL + 1 ))
