@@ -1,4 +1,5 @@
 import sys
+from modules.parse import Parser
 import speech_recognition as sr
 
 
@@ -32,5 +33,6 @@ elif sys.argv[1] == 'listen':
 
 # titan is listening for the 'CREATE' command
     if Command.identification(recognized_speech) == 'create':
-        Files.generate(recognized_speech)
+        speech = Parser(recognized_speech)
+        Files.generate(speech.parsed())
 
