@@ -1,7 +1,7 @@
 __version__ = "0.0.0 alpha"
 
 
-_TIMEOUT = 7
+_TIMEOUT = 10
 
 DOCTYPES = [
     'excel',

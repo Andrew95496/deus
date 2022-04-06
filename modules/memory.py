@@ -29,7 +29,11 @@ class Memory:
         return self.__convert_size(bytes)
 
 
-m = Memory()
 
-print(m.INSERT('1'))
+
+if __name__ == "__main__":
+
+    m = Memory()
+
+    print(m.INSERT('1'))
 

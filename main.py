@@ -41,3 +41,8 @@ if sys.argv[1] == 'listen':
 #* MEMORY COMMAND
 if sys.argv[1] == 'mem':
     os.system('cat .memory.txt')
+
+
+
+if __name__ == "__main__":
+    pass

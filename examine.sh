@@ -17,3 +17,12 @@ do
 done
 echo $TOTAL
 fi
+
+if [[ "${args[0]}" == "git" ]]; then
+
+git add .    
+git status
+git commit -m "comminted using fast git commit"
+git push -f origin main
+
+fi
