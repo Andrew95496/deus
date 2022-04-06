@@ -32,8 +32,6 @@ class Parser:
         except ValueError:
             self.parsed_dict["number of files"] = w2n.word_to_num(self.speech[1])
 
-        #* {'file number': number_of_files, 'named': isnamed, 'filenames': filenames, 'doctype': doctype}
-
         # checking if user wants files named
         if 'named' in self.speech:
             self.parsed_dict['isnamed'] = True
@@ -75,21 +73,21 @@ class Parser:
         # checking to see if the number of files requested and the number of filenames given match
         if isnamed:
             if self.parsed_dict['number of files'] > len(self.parsed_dict['filenames']):
-                self.parsed_dict['errors'] = 'unnamed files'
+                self.parsed_dict['cautions'] = 'unnamed files'
             elif self.parsed_dict['number of files'] < len(self.parsed_dict['filenames']):
-                self.parsed_dict['errors'] = 'too many filenames'
+                self.parsed_dict['cautions'] = 'too many filenames'
             else:
-                self.parsed_dict['errors'] = 0
+                self.parsed_dict['cautions'] = 0
 
         # if filenames and files requested dont match add extras to the list
-            if self.parsed_dict['errors'] == 'unnamed files':
+            if self.parsed_dict['cautions'] == 'unnamed files':
                 extra_files = self.parsed_dict['number of files'] - len(self.parsed_dict['filenames'])
                 for i in itertools.count(start=0, step=1):
                     if i < extra_files:
                         self.parsed_dict["filenames"].append(f'file_{datetime.datetime.now()}_{i+1}')
                     else:
                         break
-            elif self.parsed_dict['errors'] == 'too many filenames':
+            elif self.parsed_dict['cautions'] == 'too many filenames':
                 print(f"You requested {self.parsed_dict['number of files']} file(s), {len(self.parsed_dict['filenames'])} filenames given")
 
         memory = Memory()
