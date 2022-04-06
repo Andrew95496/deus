@@ -1,5 +1,6 @@
 import datetime
 import itertools
+from modules.memory import Memory
 
 from word2number import w2n
 
@@ -10,18 +11,20 @@ class Parser:
         self.speech = speech.split()
         self.parsed_dict = {}
 
-#     "create 5 files named file1, file2, file3, file4, and file5 as txt"
+# "create 5 files named file1 file2 file3 file4 and file5 as txt"
 
 # ? create -> COMMAND
 # ? 5 -> number of files to create
 # ? [file1, file2, file3, file4, file5] -> Deus names the files
 # ? as txt -> file type
 
-    def parsed(self):        
+    def parsed(self):  
+
         # remove 'and'
         if 'and' in self.speech:
             while 'and' in self.speech:
-                self.speech.remove('and')
+                self.speech.remove('and')      
+        
 
         # file number
         try:
@@ -89,27 +92,28 @@ class Parser:
             elif self.parsed_dict['errors'] == 'too many filenames':
                 print(f"You requested {self.parsed_dict['number of files']} file(s), {len(self.parsed_dict['filenames'])} filenames given")
 
-                
-
-
-        
+        memory = Memory()
+        memory.INSERT(self.parsed_dict)
         return self.parsed_dict
 
 
 
 
 if __name__ == "__main__":
-    test1 = Parser("create 5 files named  file1, file2, file3, file4, and file5 as python")
-    test2 = Parser("create 5 files named  file1, file2, file3, file4, and file5")
-    test3 = Parser("create 3 files")
-    test4 = Parser("create 3 files as python")
-    test5 = Parser("create 16 files named  file1, file2, file3, file4, and file5 as python")
-    test6 = Parser("create 4 files named  file1, file2, file3, file4, and file5 as python")
+    for _ in range(1000):
+        test1 = Parser("create 5 files named  file1 and file2 and file3 and file4 and file5 as python")
+        test2 = Parser("create 5 files named  file1 file2 file3 file4 and file5")
+        test3 = Parser("create 3 files")
+        test4 = Parser("create 3 files as python")
+        test5 = Parser("create 16 files named  file1 file2 file3 file4 and file5 as python")
+        test6 = Parser("create 4 files named  file1 file2 file3 file4 and file5 as python")
 
 
-    print(f'test1: {test1.parsed()}')
-    print(f'test2: {test2.parsed()}')
-    print(f'test3: {test3.parsed()}')
-    print(f'test4: {test4.parsed()}')
-    print(f'test5: {test5.parsed()}')
-    print(f'test6: {test6.parsed()}')
+        print(f'test1: {test1.parsed()}')
+        print(f'test2: {test2.parsed()}')
+        print(f'test3: {test3.parsed()}')
+        print(f'test4: {test4.parsed()}')
+        print(f'test5: {test5.parsed()}')
+        print(f'test6: {test6.parsed()}')
+
+        print(f'\n\n\n{test1.__dict__}\n\n\n')

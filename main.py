@@ -1,4 +1,5 @@
 import sys
+import os
 from modules.parse import Parser
 import speech_recognition as sr
 
@@ -11,7 +12,6 @@ from config import __version__, _TIMEOUT
 # TODO add a save command
 
 
-
 if len(sys.argv) <= 1:
     print(f'''\nWelcome to DEUS "{__version__}"
 
@@ -19,7 +19,8 @@ if len(sys.argv) <= 1:
     ''')
 
 
-elif sys.argv[1] == 'listen':
+#* LISTEN COMMAND
+if sys.argv[1] == 'listen':
     voice_recognizer = sr.Recognizer()
 
     with sr.Microphone() as source:
@@ -36,3 +37,7 @@ elif sys.argv[1] == 'listen':
         speech = Parser(recognized_speech)
         Files.generate(speech.parsed())
 
+
+#* MEMORY COMMAND
+if sys.argv[1] == 'mem':
+    os.system('cat .memory.txt')

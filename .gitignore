@@ -1,5 +1,6 @@
 #personal
 test/
+.memory.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
