@@ -1,3 +1,6 @@
+import datetime
+
+
 class Files:
 
 # PARSED.DICT
@@ -5,12 +8,15 @@ class Files:
 
     def generate(self, parsed_dict):
         for file in parsed_dict['filenames']:
-            with open(f'/Users/drewskikatana/deus/test/{file}.{parsed_dict["doctype"]}', 'w') as new_file:
-                print(f'caution: {parsed_dict["cautions"]} ')
+            with open(f'/Users/drewskikatana/deus/test/{file}.{parsed_dict["doctype"]}', 'w'):
+                if parsed_dict['cautions'] != 0:
+                    print(f'Files created with cautions!\n\tcaution: {parsed_dict["cautions"]} ')
+                else:
+                    print('SUCCESS!')
 
 
 
 
 if __name__ == "__main__":
     file = Files()
-    file.generate({'number of files': 1, 'isnamed': True, 'doctype': 'txt', 'filenames': ['Andrew'], 'cautions': 'unnamed files'})
+    file.generate({'number of files': 1, 'isnamed': True, 'doctype': 'sh', 'filenames': [f'{datetime.datetime.now()}'], 'cautions': 'unnamed files'})

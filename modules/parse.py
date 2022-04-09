@@ -1,8 +1,9 @@
 import datetime
 import itertools
-from modules.memory import Memory
 
 from word2number import w2n
+
+from modules.memory import Memory
 
 
 class Parser:
