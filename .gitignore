@@ -1,6 +1,8 @@
 #personal
 test/
-.memory.txt
+.memory
+z.py
+examine.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

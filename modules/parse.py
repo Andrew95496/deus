@@ -19,7 +19,7 @@ class Parser:
 # ? [file1, file2, file3, file4, file5] -> Deus names the files
 # ? as txt -> file type
 
-    def parsed(self):  
+    def file_parse(self):  
 
         # remove 'and'
         if 'and' in self.speech:
@@ -95,7 +95,8 @@ class Parser:
         memory.INSERT(self.parsed_dict)
         return self.parsed_dict
 
-
+    def web_parse(self):
+        pass
 
 
 if __name__ == "__main__":

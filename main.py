@@ -6,7 +6,9 @@ import speech_recognition as sr
 
 from modules.commandtype import Command
 from modules.files import Files
+from modules.web import Web
 from config import __version__, _TIMEOUT
+from user_configs.user_configs import SAVED_COMMANDS
 
 # TODO parse through the command
 # TODO add a save command
@@ -19,7 +21,7 @@ if len(sys.argv) <= 1:
     ''')
 
 
-#* LISTEN COMMAND
+# * LISTEN COMMAND
 if sys.argv[1] == 'listen':
     voice_recognizer = sr.Recognizer()
 
@@ -32,16 +34,22 @@ if sys.argv[1] == 'listen':
 
     print(f'What was heard: {recognized_speech}')
 
+
+    if Command.identification(recognized_speech) in SAVED_COMMANDS:
+        pass
 # titan is listening for the 'CREATE' command
-    if Command.identification(recognized_speech) == 'create':
+    elif Command.identification(recognized_speech) == 'create':
         speech = Parser(recognized_speech)
-        Files.generate(speech.parsed())
+        Files.generate(speech.file_parse())
+
+    elif Command.identification(recognized_speech) == 'build':
+        speech = Parser(recognized_speech)
+        Web.generate(speech.web_parse())
 
 
-#* MEMORY COMMAND
+# * MEMORY COMMAND
 if sys.argv[1] == 'mem':
-    os.system('cat .memory.txt')
-
+    os.system('cat .memory')
 
 
 if __name__ == "__main__":

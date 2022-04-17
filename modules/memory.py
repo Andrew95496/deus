@@ -2,13 +2,24 @@ import datetime
 import os
 import math
 
-from pandas import ExcelFile
+#TODO encrypt memory only decryted by private key
 
 
 class Memory:
 
     def __init__(self):
         self.database = {}
+
+    def __encrypt(self, data):
+        ascii_data = []
+        for char in data:
+            ascii = ord(char) + 7
+            ascii_data.append(str(ascii))
+        return ' '.join(ascii_data)
+
+
+    def decrypt(self, data):
+        pass
 
     # converting the size of the file to the size name
     # hidden method
@@ -25,7 +36,11 @@ class Memory:
     def INSERT(self, data):
         with open('.memory', 'a') as memory:
             self.database[f'{datetime.datetime.now()}'] = data
-            memory.write(f'{self.database}\n')
+            ascii_string = f'{self.database}'
+            print(ascii_string)
+            memory.write(f'{self.__encrypt(ascii_string)}\n')
+
+        
 
         bytes = os.path.getsize('/Users/drewskikatana/deus/.memory')
 
@@ -38,7 +53,7 @@ if __name__ == "__main__":
 
     m = Memory()
 
-    for i in range(5):
+    for i in range(5000):
         data = str(os.urandom(5))
         i = Memory()
         print(i.INSERT(data))
